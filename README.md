@@ -1,52 +1,97 @@
-# Ames Housing EDA Project
+# Ames Housing — Exploratory Data Analysis
 
-Exploratory Data Analysis of the Ames Housing dataset using R.
+An end-to-end exploratory data analysis and predictive modelling project using the Ames Housing dataset, built in R as a portfolio piece.
+
+---
+
+## Project Summary
+
+This project investigates **what drives residential home sale prices** in Ames, Iowa using 2,930 sales recorded between 2006 and 2010. The analysis covers the full data science workflow: data loading, cleaning, visualisation, and predictive modelling — all compiled into a self-contained R Markdown report.
+
+---
+
+## Key Findings
+
+- **Sale prices are right-skewed** — the median sale price is ~$163k, but a long tail of luxury homes pulls the mean higher.
+- **Living area is the strongest continuous predictor** — each additional square foot adds ~$55 to the predicted price.
+- **Overall quality dominates all other variables** — with a correlation of ~0.80 with sale price, material and finish quality is the single biggest driver.
+- **Neighborhood matters enormously** — average prices vary by over $180k between the most and least expensive neighborhoods.
+- **A 3-variable linear regression model** (living area + overall quality + garage capacity) explains ~75% of the variance in sale price (R² ≈ 0.75), with an RMSE of ~$38k.
+
+---
+
+## Visualisations
+
+| # | Chart | Key Takeaway |
+|---|-------|-------------|
+| 1 | Distribution of Sale Prices | Right-skewed; median ~$163k |
+| 2 | Sale Price vs. Living Area | Strong positive linear trend |
+| 3 | Average Price by Neighborhood | Up to $180k gap across 28 neighborhoods |
+| 4 | Correlation Heatmap | Overall quality, living area, and garage size top the rankings |
+| 5 | Predicted vs. Actual (Regression) | Model fits well in the $100k–$300k range; underpredicts luxury homes |
+
+---
+
+## Tools & Packages
+
+| Tool | Purpose |
+|------|---------|
+| R 4.5 | Core language |
+| `tidyverse` | Data wrangling and transformation |
+| `ggplot2` | All custom visualisations |
+| `corrplot` | Correlation heatmap |
+| `scales` | Dollar and comma axis formatting |
+| `AmesHousing` | Source dataset (no manual download needed) |
+| R Markdown | Compiled HTML report with inline results |
+
+---
 
 ## Project Structure
 
 ```
-eda-housing-project/
-├── data/               ← cleaned dataset saved here after running the script
+ames-housing-eda/
 ├── scripts/
-│   ├── 01_setup_and_eda.R          ← standalone R script (run this first)
-│   └── ames_housing_report.Rmd     ← R Markdown report (knit after the script)
-├── output/             ← PNG plots saved here
+│   ├── 01_setup_and_eda.R        # Standalone script: cleans data, saves plots
+│   └── ames_housing_report.Rmd   # Full R Markdown report (self-contained)
+├── data/                         # Cleaned CSV written here at runtime
+├── output/                       # PNG plots and HTML report written here
 └── README.md
 ```
 
+---
+
 ## How to Run
 
-### Option A — Run the standalone script first, then knit the report
+**Prerequisites:** R 4.0+ and RStudio (recommended). All packages are installed automatically on first run.
+
+### Option A — Knit the full report (recommended)
+
+Opens a polished HTML report with all code, charts, and written insights:
 
 ```r
-# Step 1: Run the EDA script (installs packages, saves plots + cleaned CSV)
+rmarkdown::render("scripts/ames_housing_report.Rmd", output_dir = "output/")
+```
+
+Then open `output/ames_housing_report.html` in your browser.
+
+### Option B — Run the standalone EDA script
+
+Saves cleaned data and 4 PNG plots to `data/` and `output/` without knitting:
+
+```r
 source("scripts/01_setup_and_eda.R")
-
-# Step 2: Knit the R Markdown report to HTML
-rmarkdown::render("scripts/ames_housing_report.Rmd", output_dir = "output/")
 ```
 
-### Option B — Knit only the R Markdown report
-
-The `.Rmd` file is self-contained — it installs packages, loads data, cleans,
-and plots everything inline.
-
-```r
-rmarkdown::render("scripts/ames_housing_report.Rmd", output_dir = "output/")
-```
+---
 
 ## Dataset
 
-The Ames Housing dataset is loaded directly from the
-[`AmesHousing`](https://cran.r-project.org/package=AmesHousing) R package
-(no manual download needed). It contains 2,930 home sales in Ames, Iowa (2006–2010).
+The **Ames Housing Dataset** was compiled by Dean De Cock (2011) as a modern alternative to the Boston Housing dataset. It contains 80 variables describing residential properties sold in Ames, Iowa between 2006 and 2010.
 
-## Packages Used
+Loaded directly via the [`AmesHousing`](https://cran.r-project.org/package=AmesHousing) R package — no manual download required.
 
-| Package | Purpose |
-|---------|---------|
-| `tidyverse` | Data wrangling (dplyr, tidyr, readr) |
-| `ggplot2` | Visualizations |
-| `corrplot` | Correlation heatmap |
-| `scales` | Dollar/comma formatting on axes |
-| `AmesHousing` | Source dataset |
+---
+
+## Author
+
+**Christopher** — Data Science Portfolio Project
