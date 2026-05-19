@@ -135,7 +135,7 @@ ggplot(housing_clean, aes(x = Sale_Price)) +
   theme_ames()
 ```
 
-**Insight:** Sale prices follow a **right-skewed distribution** — most homes sold
+**Insight:** Sale prices follow a **right-skewed distribution**: most homes sold
 between \$100k–\$250k, but a long tail of luxury properties pulls the mean above
 the median. The median sale price is approximately
 **\$`r comma(median(housing_clean$Sale_Price))`**, which is a more representative
@@ -161,7 +161,7 @@ ggplot(housing_clean, aes(x = Gr_Liv_Area, y = Sale_Price)) +
 ```
 
 **Insight:** There is a **clear positive linear relationship** between living area
-and sale price — larger homes generally sell for more. The linear trend fits well
+and sale price: larger homes generally sell for more. The linear trend fits well
 for most of the data, though a handful of large homes sold for surprisingly low
 prices (possible distressed sales or unusual properties). The spread of prices
 also widens as living area increases, a pattern called
@@ -193,7 +193,7 @@ ggplot(neighborhood_avg, aes(x = Neighborhood, y = avg_price, fill = avg_price))
 ```
 
 **Insight:** Neighborhood is one of the strongest predictors of home price.
-**`r neighborhood_avg$Neighborhood[nrow(neighborhood_avg)]`** commands the highest
+**`r neighborhood_avg$Neighborhood[1]`** commands the highest
 average prices, while more affordable neighborhoods cluster at the bottom. The
 price gap between the most and least expensive neighborhoods is over
 **\$`r comma(max(neighborhood_avg$avg_price) - min(neighborhood_avg$avg_price))`**,
@@ -236,7 +236,7 @@ corrplot(
 - **Overall_Qual** (overall material quality) has the **highest correlation**
   (~0.80), confirming that build quality is the single strongest numeric predictor.
 - **Gr_Liv_Area**, **Total_Bsmt_SF**, and **Garage_Area** are all positively
-  correlated — more space means more value.
+  correlated: more space means more value.
 - **Year_Built** and **Year_Remod_Add** show moderate positive correlations,
   meaning newer or recently renovated homes sell for more.
 - **Overall_Cond** (overall condition) has a surprisingly **weak correlation**
@@ -324,12 +324,12 @@ each one-step increase in overall quality adds around
 **\$`r comma(round(coef(model)["Overall_Qual_num"], 0))`**, and each additional
 garage car space adds approximately
 **\$`r comma(round(coef(model)["Garage_Cars"], 0))`**. The predicted vs. actual
-plot shows points clustering tightly around the diagonal — good alignment in the
+plot shows points clustering tightly around the diagonal, good alignment in the
 \$100k–\$300k range where most homes sit. The model tends to **underpredict**
 for high-end homes (top-right scatter above the line), which is expected: luxury
 properties have premium features (custom finishes, location) that a 3-variable
 model can't fully capture. An RMSE of roughly \$`r comma(round(rmse/1000, 0))`k
-means typical predictions are off by that amount — reasonable as a baseline, but
+means typical predictions are off by that amount, reasonable as a baseline, but
 there's clear room to improve by adding neighborhood, year built, or basement
 area as additional predictors.
 
@@ -340,16 +340,15 @@ area as additional predictors.
 | Question | Finding |
 |----------|---------|
 | What does the price distribution look like? | Right-skewed; median ~\$163k, mean pulled higher by luxury homes |
-| Does bigger = pricier? | Yes — strong positive linear trend with living area |
-| Which neighborhood is most expensive? | `r neighborhood_avg$Neighborhood[nrow(neighborhood_avg)]` leads; 28 neighborhoods show wide price variation |
+| Does bigger = pricier? | Yes, strong positive linear trend with living area |
+| Which neighborhood is most expensive? | `r neighborhood_avg$Neighborhood[1]` leads; 28 neighborhoods show wide price variation |
 | What drives sale price most? | Overall quality, living area, basement size, and garage area |
 
 **Next steps for deeper analysis:**
 
-1. ~~Build a multiple linear regression model~~ ✓ Done in Section 5
-2. Investigate the **outlier homes** (large area, low price) in the scatter plot.
-3. Explore **time trends** — did prices change between 2006 and 2010?
-4. Add more predictors (neighborhood, year built, basement area) to improve the model's RMSE.
+1. Investigate the **outlier homes** (large area, low price) in the scatter plot.
+2. Explore **time trends**, did prices change between 2006 and 2010?
+3. Add more predictors (neighborhood, year built, basement area) to improve the model's RMSE.
 
 ---
 
