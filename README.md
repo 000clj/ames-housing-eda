@@ -12,10 +12,10 @@ This project investigates **what drives residential home sale prices** in Ames, 
 
 ## Key Findings
 
-- **Sale prices are right-skewed** — the median sale price is ~$163k, but a long tail of luxury homes pulls the mean higher.
+- **Sale prices are right-skewed** — the median sale price is ~$160k, but a long tail of luxury homes pulls the mean higher.
 - **Living area is the strongest continuous predictor** — each additional square foot adds ~$55 to the predicted price.
 - **Overall quality dominates all other variables** — with a correlation of ~0.80 with sale price, material and finish quality is the single biggest driver.
-- **Neighborhood matters enormously** — average prices vary by over $180k between the most and least expensive neighborhoods.
+- **Neighborhood matters enormously** — average prices vary by over $216k between the most and least expensive neighborhoods.
 - **A 3-variable linear regression model** (living area + overall quality + garage capacity) explains ~75% of the variance in sale price (R² ≈ 0.75), with an RMSE of ~$38k.
 
 ---
@@ -24,9 +24,9 @@ This project investigates **what drives residential home sale prices** in Ames, 
 
 | # | Chart | Key Takeaway |
 |---|-------|-------------|
-| 1 | Distribution of Sale Prices | Right-skewed; median ~$163k |
+| 1 | Distribution of Sale Prices | Right-skewed; median ~$160k |
 | 2 | Sale Price vs. Living Area | Strong positive linear trend |
-| 3 | Average Price by Neighborhood | Up to $180k gap across 28 neighborhoods |
+| 3 | Average Price by Neighborhood | Up to $216k gap across 28 neighborhoods |
 | 4 | Correlation Heatmap | Overall quality, living area, and garage size top the rankings |
 | 5 | Predicted vs. Actual (Regression) | Model fits well in the $100k–$300k range; underpredicts luxury homes |
 
@@ -88,10 +88,10 @@ source("scripts/01_setup_and_eda.R")
 
 The **Ames Housing Dataset** was compiled by Dean De Cock (2011) as a modern alternative to the Boston Housing dataset. It contains 80 variables describing residential properties sold in Ames, Iowa between 2006 and 2010.
 
-Loaded directly via the [`AmesHousing`](https://cran.r-project.org/package=AmesHousing) R package — no manual download required.
+Loaded directly via the [`AmesHousing`](https://cran.r-project.org/package=AmesHousing) R package, no manual download required.
 
 ---
 
 ## Author
 
-**Christopher** — Data Science Portfolio Project
+**Christopher** 
